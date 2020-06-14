@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+	<div class="container jumbotron" style="width: 80%; margin-left: auto; margin-right:auto;">
+		<h5> {{ herb.herb_name}}</h5> 
+        <h5> {{ herb.herb_cure}}</h5> 
+        <div>
+           <div class="img-container">
+            <img src="{{herb.herb_image}}" id="herb_herb_image" alt="{{herb.herb_name}}">
+        </div>
+        </div>       
+        <div>
+          <h5> Herb description </h5>
+          <div>
+            {{ herb.herb_description}}
+          </div>
+        </div>
+        <div>
+          <h5> Herb preparation </h5>
+          <div>
+            {{ herb.herb_preparation}}
+          </div>
+        </div>
+        <div>
+         <h5> Herb usage </h5>
+          <div>
+            {{ herb.herb_usage}}
+          </div>
+        </div>
+         <div class="row">
+        <p class="card-title chf col-6">Writen by:</p>
+        <p class="card-title col-6 cpt">{{herb.username}}</p>
+    </div>
+    <div class="row">
+        <p class="card-title chf col-6">Date writen:</p>
+        <p class="card-title col-6 cpt">{{herb.date_added}}</p>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center ">
+            {% if session_name == herb.username %}
+            <a id="edit-btn" href="{{url_for('edit_herb', herb_id=herb._id)}}"
+                class="ripple-surface btn btn-primary chf col-md-4">Edit
+                Herb</a>
+            <!--Sends you to a delete page for clicked herb-->
+            <a id="delete-btn" href="{{url_for('delete_herb', herb_id=herb._id)}}"
+                class="ripple-surface btn btn-primary chf col-md-4">Delete
+                Herb</a>
+            <!--Sends you back to all_herbs-->
+            <a href="{{url_for('all_herb')}}" class="ripple-surface btn btn-primary chf col-md-4">Back Home</a>
+            {% else %}
+            <a href="{{url_for('all_herb')}}" class="ripple-surface btn btn-primary chf col-md-4">Back Home</a>
+            {% endif %}
+        </div>
+	</div>
+</div>
+   
+</div>
+{% endblock %}

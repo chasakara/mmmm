@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container herbContainer">
+  <!--Cycles throug all the herbs-->
+  {% for herb in herbs %}
+<div class="card">
+<a href="{{ url_for('herb', herb_id=herb._id) }}"> 
+  {% if herb.image %}
+    <img src="{{herb.herb_image}}" class="herb_image card-img-top" alt="{{herb.herb_name}}">
+  {% else %}
+    <img src="{{ url_for('static', filename='herbsimages/imgae_placholder.jpg') }}"
+            class="responsive-img" alt="No Herb image available" />
+  {% endif %}      
+</a>
+  <div class="card-body">
+    <div class="cu">
+      <h5 class="card-title">{{ herb.herb_name }}</h5>
+    </div>
+    <div>
+      <h5 class="card-title cu">{{ herb.herb_cure }}</h5>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+</div>
+{% endblock %}

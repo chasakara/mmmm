@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="jumbotron" style="width: 80%; margin-left: auto; margin-right:auto;">
+    <div class="">
+        <h1 class="text-center hf">Edit Herb</h1>
+    </div>
+
+    <div class="addrecipys">
+        <form action="{{ url_for('edit_herb', herb_id=herb._id) }}" method="POST">
+            <div class="form-group">
+                <label class="sr-only" for="username"></label>
+                <input type="text" class="form-control sr-only" id="username" value="{{session_name}}" name="username">
+            </div>
+            <div class="form-group">
+                <i class="material-icons">import_contacts</i>
+                <label for="herb_name">&nbsp;Herb Name:</label>
+                <input type="text" class="form-control" id="herbName" name="herb_name"
+                    value="{{herb.herb_name}}">
+            </div>
+            <div class="form-group">
+                <i class="material-icons">restaurant</i>
+                <label for="herb_cure">&nbsp;Herb cure</label>
+                <input type="text" class="form-control" id="herb_cure" name="chef" value="{{herb.herb_cure}}">
+            </div>
+             <div class="form-group">
+                <i class="material-icons">add_a_photo</i>
+                <label for="herb_image_uploader">&nbsp;Herb Image URL</label>
+                <input type="text" class="form-control" name="herb_image" id="herb_image_uploader"
+                    value="{{herb.herb_image}}" title="Right Click:'Copy Image Location'">
+            </div>
+            <br>
+           
+            <br>
+            <div class="form-group">
+                <i class="material-icons">assignment</i>
+                <label for="herb_description">&nbsp;Herb  descrition:</label>
+                <textarea class="form-control ckeditor" id="herb_description" name="herb_description" rows="4">
+                    {{herb.herb_description|safe}}
+                </textarea>
+            </div>
+            <div class="form-group">
+                <i class="material-icons">assignment_turned_in </i>
+                <label for="herb_preparation">&nbsp;Herb preparation</label>
+                <textarea class="form-control ckeditor" id="herb_preparation" name="herb_preparation" rows="5">
+                {{herb.herb_preparation|safe}}
+                </textarea>
+            </div>
+             <div class="form-group">
+                <i class="material-icons">assignment_turned_in </i>
+                <label for="herb_usage">&nbsp;Herb Usage</label>
+                <textarea class="form-control ckeditor" id="herb_usage" name="herb_usage" rows="5">
+                {{herb.herb_usage|safe}}
+                </textarea>
+            </div>
+            <div class="">
+                <label class="sr-only" for="date_added"></label>
+                <input type="date" class="sr-only form-control" id="date_added" name="date_added"
+                    value="{{herb.date_added}}">
+
+            </div>
+            <div>
+                <button type="submit" class="ripple-surface btn btn-primary">Edit Done</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

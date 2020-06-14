@@ -1,0 +1,69 @@
+* {margin: 0;
+   padding: 0;}
+
+body {background-color: #d6f3c9cc;}
+
+/*---- Navbar ---*/
+
+.nnnn {background-color: green;}
+
+.nav-item a  {
+    color: white;}
+
+/*---- Home Page ---*/
+
+.home-image {margin-top: 97px;}
+
+.home-image img {background-size: cover;
+             background-repeat: no-repeat;
+             width: 100vw;
+             height: 450px;}
+
+/*---- My Herbs ---*/
+
+.container-fluid {padding: 0;}
+
+h5 {text-align: center;
+      padding: 0;
+      margin: 0;}
+
+.rev {background-color: black;
+          color: white;}
+
+span{color: green;}
+
+.cu{color: black;
+    padding: 0;
+    margin: 0;
+    background-color: lightgreen;}
+
+.card-body {padding: 0;}
+
+.card-title {margin: 0;}
+
+.card-title span a {background-color: green;
+                    color: white;
+                    font-size: 20px;
+                    width: 130px;}
+
+.card {margin: 35px;
+      border: 1px solid springgreen;
+      border-radius: 4px;}
+
+.rev-display {display: inline-block;}
+
+/*---- Review Page ---*/
+
+/*---- Herb Page ---*/
+
+/*---- Log in Form ---*/
+
+/*---- Sign up Form ---*/
+
+form{margin-right: auto;
+    text-align: left;
+    display: inline-block;
+    margin-left: auto;}
+    
+    
+

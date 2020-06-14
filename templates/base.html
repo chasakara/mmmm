@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css"/>
+<title>Traditional Herbs</title>
+</head>
+<body>
+
+<nav class="navbar nnnn navbar-expand-md ">
+  <a class="navbar-brand" href="{{ url_for('index')}}">LOGO</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      {% if session['logged_in'] == True  %}
+      <li>
+        <a class="ripple-surface nav-link" href="{{url_for('my_herbs')}}" title="List your herbs">My Herbs</a>
+      </li>
+        {% else %}
+        {% endif %}
+      <li class="nav-item">
+        <a class="ripple-surface nav-link" href="{{url_for('add_herb')}}">Add Herb</a>
+      </li>
+      <li class="nav-item">
+          {% if session['logged_in'] == True %}
+        <a class="ripple-surface nav-link" title="Logout" href="{{url_for('logout')}}">Logout</a>
+          {% else %}
+         <a class="ripple-surface nav-link" href="{{url_for('all_herbs')}}" title="List your all herbs">All Herbs</a>
+        <a class="ripple-surface nav-link" title="Login and Register" href="{{url_for('login')}}">Login</a>
+          {% endif %} 
+      </li>
+    </ul>
+ </div>
+    <div>
+    {% block Head %}
+    <!--Initialize ckeditor-->
+    {{ ckeditor.load(pkg_type="basic") }}
+    <!--Puts the Logged in users name in header-->
+    {% if session['logged_in'] == True %}
+    <h6 class="loggedIn chf">Welcome:&nbsp;{{session_name}}</h6>
+    {% else %} {% endif %} {% endblock Head %}
+  </div>
+</nav>
+
+	{% block content %} 
+    {% endblock %}
+
+</body>
+</html>

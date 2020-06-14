@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+<div class="home-image">
+  <img src="{{ url_for('static', filename='herbsimages/herbindex.jpg') }}" alt="sting" class="img-fluid">
+</div>
+<div>
+ <h2>Trending this month</h2>
+</div>
+
+<!--Display 4 random herbs from the database-->
+   <div class="row">
+    {% for herb in trending_herbs %} 
+        {% include "herb.html" %} 
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
