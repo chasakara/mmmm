@@ -38,14 +38,12 @@
             {{ herb.herb_usage}}
           </div>
         </div>
-         <div class="row">
-        <p class="card-title chf col-6">Writen by:</p>
-        <p class="card-title col-6 cpt">{{herb.username}}</p>
-    </div>
-    <div class="row">
-        <p class="card-title chf col-6">Date writen:</p>
-        <p class="card-title col-6 cpt">{{herb.date_added}}</p>
-    </div>
+         <div class="writenby">
+          <p class="">Writen by: <h6> {{herb.username}} </h6> </p>
+        </div>
+        <div class="datewriten">
+          <p class="">Date writen: <h6> {{herb.date_added}} </h6> </p>
+        </div>
     <div class="container">
         <div class="row justify-content-center ">
             {% if session_name == herb.username %}

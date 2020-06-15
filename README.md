@@ -64,6 +64,27 @@ traditional herbs to cure some mild infections or mild pains
 ### Testing
 
 ### Problems encountered
+ 
+
+### Deployed on Heroku at { website URL HERE Traditional Herbs].
+
+Clone the repository by copying the clone url
+In the terminal type git clone followed by the copied url
+cd into Traditional Herbs
+In the terminal type pip3 install -r requirements.txt to install all the dependencies
+Create an account on Heroku if you don't have one yet and create a new app
+In the terminal, type echo "web: python main.py" > Procfile
+Create a new folder inside the apps directory called secret_settings and in it a .env file or change path in app_setup.py and create the .env file anywhere you'd like
+In the .env file set DBNAME, URI and SECRET_KEY
+In the terminal, heroku login
+git init to create a new repository
+heroku git:remote -a (name of your heroku app, no brackets)
+git add .
+git commit -m "Initial commit"
+git push heroku master
+heroku ps:scale web=1
+In your heroku app navigate to settings and reveal config vars, set IP = 0.0.0.0, PORT = 5000, DBNAME, URI and SECRET_KEY
+restart all dynos and open your heroku app
 
 ### Credits
 

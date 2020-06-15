@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends 'base.html' %} 
+{% block content %}
+<div class="">
+  <h1 class="">
+    <span class="text-black">{{ session.username }}</span>'s herbs <!-- Amended this line to show username correctly-->
+  </h1>
+  <p class="">
+    You have created
+     herbs
+  </p>
+  
+{% if herbs %} <!-- Now this is looking for if herbs exists-->
+   {% for herb in herbs %} <!-- for each item in that list -->
+    <h1>placeholder</h1> <!-- Can now be anything you want to do with it-->
+    {% endfor %}
+{% else %}
+{% endif %}
+  <p class="center-align">
+    <a href="{{ url_for('add_herb')}}"> Add New Herb  </a>
+  </p>
+</div>
+
+  {% for page_num in pages %} 
+        {% if page_num == current_page %}
+        <li class="active"><a>{{ page_num }}</a></li>
+        {% else %}
+        {% endif %} 
+    {% endfor %}
+
+{% endblock %}

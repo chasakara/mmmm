@@ -35,10 +35,19 @@ def all_herbs():
                                session_name=session['username'],
                                today=today,
                                herbs=mongo.db.herbs.find().sort("_id", -1))
-    # Puts the resipe in order Newest to oldest but with out the login username
+    # Puts the herbs in order Newest to oldest but with out the login username
     return render_template("all_herbs.html",
                            herbs=mongo.db.herbs.find().sort("_id", -1))
 
+"""
+
+@app.route('/my_herbs')
+def my_herbs():
+    session_name = session['username']
+    herbs_list = mongo.db.herbs.find({'username': session['username']})
+    herbs = [herbs for herbs in herbs_list]
+    return render_template("my_herbs.html", herbs=herbs, sesssion_name)
+"""
 
 
 @app.route('/my_herbs')
@@ -48,7 +57,6 @@ def my_herbs():
                            session_name=session['username'],
                            herbs=mongo.db.herbs.find({
                                'username': session_name}))
-
 
 
 @app.route('/herb/<herb_id>')
@@ -111,7 +119,7 @@ def add_herb():
         if request.method == 'POST':
             herbs = mongo.db.herbs
             herbs.insert({
-                'username': request.form.get('username'),
+                'username': session['username'],  #Now gets the username from session
                 'herb_name': request.form.get('herb_name'),
                 'herb_cure': request.form.get('herb_cure'),
                 'herb_description': request.form.get('herb_description'),
@@ -158,7 +166,7 @@ def edit_herb(herb_id):
                                 'herb_image': request.form.get('herb_image'),
                                 'date_added': request.form.get('date_added'),
                                 'update_iso': datetime.datetime.now()})
-                flash(' You have Successfully Updated Your Heb', 'success')
+                flash(' You have Successfully Updated Your Herb', 'success')
                 return redirect(url_for('all_herbs', herb=herb))
             return render_template('edit_herb.html',
                                    session_name=session['username'],
@@ -176,7 +184,6 @@ def logout():
 
 @app.errorhandler(404)
 def page_not_found(error):
-
     app.logger.info(f'Page not found: {request.url}')
     return render_template('errors/404.html', error=error)
 

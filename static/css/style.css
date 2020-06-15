@@ -94,10 +94,19 @@ span{color: green;}
              background-color: lightgray;
              border-radius: 15px;}
 
+.writenby {text-align: center;}
+
+.datewriten {text-align: center;}
 
 /*---- Add Herb ---*/
 
 .add_herb_container_color {background-color: white; }
+
+.addherbimagebackground {background-image: url("../herbsimages/addherbimagebackground.jpg");       
+         background-repeat: no-repeat;
+         background-size: cover;
+         margin-top: 5px;
+         border-top: 1px solid black;}
 
 /*---- Log in Form ---*/
 

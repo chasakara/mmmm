@@ -9,28 +9,21 @@
 <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css"/>
 <title>Traditional Herbs</title>
 </head>
-<body>
-
+<header>
 <nav class="navbar nnnn navbar-expand-md ">
   <a class="navbar-brand" href="{{ url_for('index')}}">LOGO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  
     <ul class="navbar-nav">
       {% if session['logged_in'] == True  %}
       <li>
         <a class=" nav-link" href="{{url_for('my_herbs')}}" title="List your herbs">My Herbs</a>
       </li>
-          <div>
-    {% block Head %}
-    <!--Initialize ckeditor-->
-    {{ ckeditor.load(pkg_type="basic") }}
-    <!--Puts the Logged in users name in header-->
-    {% if session['logged_in'] == True %}
-    <h6 class="loggedIn chf">Welcome:&nbsp;{{session_name}}</h6>
-    {% else %} {% endif %} {% endblock Head %}
-  </div>
+      <li>
+        <a class=" nav-link" href="{{url_for('all_herbs')}}" title="List your all herbs">All Herbs</a>
+      </li>
         {% else %}
         {% endif %}
       <li class="nav-item">
@@ -39,14 +32,40 @@
       <li class="nav-item">
           {% if session['logged_in'] == True %}
         <a class=" nav-link" title="Logout" href="{{url_for('logout')}}">Logout</a>
-          {% else %}
-         <a class=" nav-link" href="{{url_for('all_herbs')}}" title="List your all herbs">All Herbs</a>
-        <a class=" nav-link" title="Login and Register" href="{{url_for('login')}}">Login</a>
-          {% endif %} 
       </li>
+          {% else %}
+         <li> 
+         <a class=" nav-link" href="{{url_for('all_herbs')}}" title="List your all herbs">All Herbs</a>
+         </li>
+         <li>
+        <a class=" nav-link" title="Login and Register" href="{{url_for('login')}}">Login</a>
+        </li>
+          {% endif %} 
+    
     </ul>
- </div>
+ <div>
+    {% block Head %}
+    <!--Initialize ckeditor-->
+    {{ ckeditor.load(pkg_type="basic") }}
+    <!--Puts the Logged in users name in header-->
+    {% if session['logged_in'] == True %}
+    <h6 class="loggedIn chf">Welcome:&nbsp;{{session_name}}</h6>
+    {% else %} {% endif %} {% endblock Head %}
+  </div>
 </nav>
+</header>
+<body>
+ <div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+    <div class="alert text-center alert-{{ category }} alert-dismissible fade show" role="alert">
+      <span>{{ message }}</span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+  </div>
 
 	{% block content %} 
     {% endblock %}
