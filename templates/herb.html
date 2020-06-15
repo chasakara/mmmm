@@ -1,29 +1,39 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="container-fluid">
-	<div class="container jumbotron" style="width: 80%; margin-left: auto; margin-right:auto;">
+<div class="container-fluid herbGb">
+	<div class="container herbBgcolor">
+    <div class="herbnamecure_Bg">
+      <div>
 		<h5> {{ herb.herb_name}}</h5> 
+      </div>
+      <div>  
         <h5> {{ herb.herb_cure}}</h5> 
-        <div>
-           <div class="img-container">
-            <img src="{{herb.herb_image}}" id="herb_herb_image" alt="{{herb.herb_name}}">
-        </div>
-        </div>       
+      </div> 
+    </div>
+      <div class="">
+            <img src="{{herb.herb_image}}" class="img-fluid herb_image_container" id="herb_herb_image" alt="{{herb.herb_name}}">
+      </div>     
+        <div class="herbDescription">
         <div>
           <h5> Herb description </h5>
+        </div>
           <div>
             {{ herb.herb_description}}
           </div>
         </div>
+        <div class="herbPreparation">
         <div>
           <h5> Herb preparation </h5>
+        </div>
           <div>
             {{ herb.herb_preparation}}
           </div>
         </div>
+        <div class="herbUsage">
         <div>
          <h5> Herb usage </h5>
+        </div>
           <div>
             {{ herb.herb_usage}}
           </div>
@@ -47,13 +57,12 @@
                 class="ripple-surface btn btn-primary chf col-md-4">Delete
                 Herb</a>
             <!--Sends you back to all_herbs-->
-            <a href="{{url_for('all_herb')}}" class="ripple-surface btn btn-primary chf col-md-4">Back Home</a>
+            <a href="{{url_for('all_herbs')}}" class="ripple-surface btn btn-primary chf col-md-4">Back Home</a>
             {% else %}
-            <a href="{{url_for('all_herb')}}" class="ripple-surface btn btn-primary chf col-md-4">Back Home</a>
+            <a href="{{url_for('all_herbs')}}" class="ripple-surface btn btn-primary chf col-md-4">Back Home</a>
             {% endif %}
         </div>
 	</div>
-</div>
-   
+</div>  
 </div>
 {% endblock %}

@@ -169,7 +169,6 @@ def edit_herb(herb_id):
 
 @app.route('/logout')
 def logout():
-   
     session.pop('username', None)
     session['logged_in'] = False
     return redirect(url_for('all_herbs'))

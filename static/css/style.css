@@ -52,9 +52,48 @@ span{color: green;}
 
 .rev-display {display: inline-block;}
 
-/*---- Review Page ---*/
+/*---- All herbs Page ---*/
+
+.allherbsBg {background-image: url("../herbsimages/allherbsbackground.jpg");       
+             background-repeat: no-repeat;
+             background-size: cover;
+             }
 
 /*---- Herb Page ---*/
+
+.herbGb {background-image: url("../herbsimages/herbbackground.jpg");       
+         background-repeat: no-repeat;
+         background-size: cover;
+         margin-top: 5px;
+         border-top: 1px solid black;}
+
+.herbBgcolor {background-color: white;}
+
+.herbnamecure_Bg {background-color: limegreen;}
+
+.herb_image_container {width: 80%;
+                       text-align: center;
+                       margin: 5px 0;
+                       height: 350px;}
+
+.herbDescription {border: 1px solid limegreen;
+                  padding: 7px;
+                  text-align: center;
+                  background-color: lightgray;
+                  border-radius: 15px;}
+
+.herbPreparation { border: 1px solid limegreen;
+                  padding: 7px;
+                  text-align: center;
+                  background-color: lightgray;
+                  border-radius: 15px;}
+
+.herbUsage { border: 1px solid limegreen;
+             padding: 7px;
+             text-align: center;
+             background-color: lightgray;
+             border-radius: 15px;}
+
 
 /*---- Add Herb ---*/
 

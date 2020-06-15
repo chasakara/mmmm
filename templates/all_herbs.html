@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% block content %}
-<div class="container herbContainer">
+<div class="container-fluid  allherbsBg">
+<div class="row">
+<div class="col-lg-3 col-sm-12 col-md-4">
   <!--Cycles throug all the herbs-->
   {% for herb in herbs %}
 <div class="card">
 <a href="{{ url_for('herb', herb_id=herb._id) }}"> 
-  {% if herb.image %}
+  {% if herb.herb_image %}
     <img src="{{herb.herb_image}}" class="herb_image card-img-top" alt="{{herb.herb_name}}">
   {% else %}
     <img src="{{ url_for('static', filename='herbsimages/imgae_placholder.jpg') }}"
@@ -23,5 +25,7 @@
   </div>
 </div>
   {% endfor %}
+</div>
+</div>
 </div>
 {% endblock %}
