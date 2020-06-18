@@ -6,30 +6,30 @@
 		<h4> Add your Herb </h4>
 		<form action="{{ url_for('add_herb') }}" method="POST">
 			<div class="form-group">
-				<label for="herb_name"> Herb name </label><br>
-				<input type="text" id="herb_name" placeholder="What's the name of the herb" name="herb_name" required>
+				<label for="herb_name"> <i class="fab fa-pagelines"></i> Herb name </label><br>
+				<input type="text" class="inputstyles form-control" id="herb_name" placeholder="What's the name of the herb" name="herb_name" required>
        </div>
 			<div class="form-group">
 				<label for="herb_cure"> Herb cure </label><br>
-				<input type="text" id="herb_cure" placeholder="What does the herb cure" name="herb_cure" required>
+				<input type="text" id="herb_cure" class="inputstyles form-control" placeholder="What does the herb cure" name="herb_cure" required>
       </div>
       <div class="form-group">
         <label for="herb_image_uploader">&nbsp;Herb Image URL</label>
-        <input type="text" class="form-control" name="herb_image" id="herb_image_uploader"
+        <input type="text" class=" inputstyles form-control" name="herb_image" id="herb_image_uploader"
                placeholder="To display an Image we need a Web URL (Link)"
                title="Right Click:'Copy Image Location'" >
       </div>
 			<div class="form-group">
 				<label for="herb_description"> Herb description </label><br>
-				<textarea id="herb_description" class="form-control" placeholder="Describe how the herb generaly looks like"  name="herb_description"  required></textarea>
+				<textarea id="herb_description" class=" inputstyles form-control" placeholder="Describe how the herb generaly looks like"  name="herb_description"  required></textarea>
 			</div>
 			<div class="form-group">
 				<label for="herb_preparation"> Herb preparation </label><br>
-				<textarea id="herb_preparation" class="form-control" placeholder="How is the herb prepaired before being used" name="herb_preparation" required></textarea>
+				<textarea id="herb_preparation" class="inputstyles form-control" placeholder="How is the herb prepaired before being used" name="herb_preparation" required></textarea>
 			</div>
 			<div class="form-group">
 				<label for="herb_usage"> Herb usage </label><br>
-				<textarea id="herb_usage"  class="form-control" placeholder="How is the herb used or applied after being prepaired " name="herb_usage" required></textarea>
+				<textarea id="herb_usage"  class="inputstyles form-control" placeholder="How is the herb used or applied after being prepaired " name="herb_usage" required></textarea>
 			</div>
       <div>
         <button type="submit" class="ripple-surface btn btn-primary">Add Herb</button>

@@ -22,8 +22,11 @@ CKEditor(app)
 @app.route('/')
 @app.route("/index")
 def index():
-    return render_template('index.html')
-
+    herbs=mongo.db.herbs
+    top_trending = ([herb for herb in herbs.aggregate
+                        ([{"$sample": {"size": 4}}])])
+    return render_template('index.html', top_trending=top_trending,
+                           title='Home')
 
 @app.route('/all_herbs')
 def all_herbs():
@@ -38,16 +41,6 @@ def all_herbs():
     # Puts the herbs in order Newest to oldest but with out the login username
     return render_template("all_herbs.html",
                            herbs=mongo.db.herbs.find().sort("_id", -1))
-
-"""
-
-@app.route('/my_herbs')
-def my_herbs():
-    session_name = session['username']
-    herbs_list = mongo.db.herbs.find({'username': session['username']})
-    herbs = [herbs for herbs in herbs_list]
-    return render_template("my_herbs.html", herbs=herbs, sesssion_name)
-"""
 
 
 @app.route('/my_herbs')
@@ -67,6 +60,71 @@ def herb(herb_id):
                                session_name=session['username'],
                                herb=herb)
     return render_template('herb.html', herb=herb)
+
+
+
+@app.route('/add_herb', methods=['POST', 'GET'])
+def add_herb():
+    today_string = datetime.datetime.now().strftime('%d/%m/%y')
+    today_iso = datetime.datetime.now()
+    if 'username' in session:
+        if request.method == 'POST':
+            herbs = mongo.db.herbs
+            herbs.insert({
+                'username': session['username'],  #Now gets the username from session
+                'herb_name': request.form.get('herb_name'),
+                'herb_cure': request.form.get('herb_cure'),
+                'herb_description': request.form.get('herb_description'),
+                'herb_preparation': request.form.get('herb_preparation'),
+                'herb_usage': request.form.get('herb_usage'),
+                'herb_image': request.form.get('herb_image'),
+                'date_added': today_string,
+                'date_iso': today_iso})
+            flash('Your Herb was successfully added')
+            return redirect(url_for('all_herbs'))
+        return render_template("add_herb.html",
+                               session_name=session['username'])
+    flash('You must be logged in to add a new herb')
+    return redirect(url_for('login'))
+
+
+@app.route('/edit_herb/<herb_id>', methods=['POST', 'GET'])
+def edit_herb(herb_id):
+    if 'username' in session:
+        herb = mongo.db.herbs.find_one({'_id': ObjectId(herb_id)})
+        if session['username'] == herb['username']:
+            if request.method == 'POST':
+                herbs = mongo.db.herbs
+                herbs.update({'_id': ObjectId(herb_id)},
+                               {'username': request.form.get('username'),
+                                'herb_name': request.form.get('herb_name'),
+                                'herb_cure': request.form.get('herb_cure'),
+                                'herb_description': request.form.get('herb_description'),
+                                'herb_preparation': request.form.get('herb_preparation'),
+                                'herb_usage': request.form.get('herb_usage'),
+                                'herb_image': request.form.get('herb_image'),
+                                'date_added': request.form.get('date_added'),
+                                'update_iso': datetime.datetime.now()})
+                flash(' You have Successfully Updated Your Herb', 'success')
+                return redirect(url_for('my_herbs', herb=herb))
+            return render_template('edit_herb.html',
+                                   session_name=session['username'],
+                                   herb=herb)
+    flash('Sorry! You must be logged in first')
+    return redirect(url_for('login'))
+
+
+@app.route('/delete_herb/<herb_id>')
+def delete_herb(herb_id):
+    if 'username' in session:
+        herbs = mongo.db.herbs.find_one({'_id': ObjectId(herb_id)})
+        if session['username'] == herbs['username']:
+            herb = mongo.db.herbs.remove({'_id': ObjectId(herb_id)})
+            return redirect(url_for('all_herbs'))
+        flash('Sorry! You must be logged in first')
+        return redirect(url_for('login'))
+    flash('Sorry! You must be logged in first')
+    return redirect(url_for('login'))
 
 
 @app.route('/signup', methods=['POST', 'GET'])
@@ -111,75 +169,37 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/add_herb', methods=['POST', 'GET'])
-def add_herb():
-    today_string = datetime.datetime.now().strftime('%d/%m/%y')
-    today_iso = datetime.datetime.now()
-    if 'username' in session:
-        if request.method == 'POST':
-            herbs = mongo.db.herbs
-            herbs.insert({
-                'username': session['username'],  #Now gets the username from session
-                'herb_name': request.form.get('herb_name'),
-                'herb_cure': request.form.get('herb_cure'),
-                'herb_description': request.form.get('herb_description'),
-                'herb_preparation': request.form.get('herb_preparation'),
-                'herb_usage': request.form.get('herb_usage'),
-                'herb_image': request.form.get('herb_image'),
-                'date_added': today_string,
-                'date_iso': today_iso})
-            flash('Your Herb was successfully added')
-            return redirect(url_for('all_herbs'))
-        return render_template("add_herb.html",
-                               session_name=session['username'])
-    flash('You must be logged in to add a new herb')
-    return redirect(url_for('login'))
-
-
-@app.route('/delete_herb/<herb_id>')
-def delete_herb(herb_id):
-    if 'username' in session:
-        herbs = mongo.db.herbs.find_one({'_id': ObjectId(herb_id)})
-        if session['username'] == herbs['username']:
-            herb = mongo.db.herbs.remove({'_id': ObjectId(herb_id)})
-            return redirect(url_for('all_herbs'))
-        flash('Sorry! You must be logged in first')
-        return redirect(url_for('login'))
-    flash('Sorry! You must be logged in first')
-    return redirect(url_for('login'))
-
-
-@app.route('/edit_herb/<herb_id>', methods=['POST', 'GET'])
-def edit_herb(herb_id):
-    if 'username' in session:
-        herb = mongo.db.herbs.find_one({'_id': ObjectId(herb_id)})
-        if session['username'] == herb['username']:
-            if request.method == 'POST':
-                herbs = mongo.db.herbs
-                herbs.update({'_id': ObjectId(herb_id)},
-                               {'username': request.form.get('username'),
-                                'herb_name': request.form.get('herb_name'),
-                                'herb_cure': request.form.get('herb_cure'),
-                                'herb_description': request.form.get('herb_description'),
-                                'herb_preparation': request.form.get('herb_preparation'),
-                                'herb_usage': request.form.get('herb_usage'),
-                                'herb_image': request.form.get('herb_image'),
-                                'date_added': request.form.get('date_added'),
-                                'update_iso': datetime.datetime.now()})
-                flash(' You have Successfully Updated Your Herb', 'success')
-                return redirect(url_for('all_herbs', herb=herb))
-            return render_template('edit_herb.html',
-                                   session_name=session['username'],
-                                   herb=herb)
-    flash('Sorry! You must be logged in first')
-    return redirect(url_for('login'))
-
-
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     session['logged_in'] = False
     return redirect(url_for('all_herbs'))
+
+
+@app.route('/all_reviews')
+def all_reviews():
+    all_reviews = mongo.db.reviews.find()
+    return render_template('all_reviews.html',
+                           all_reviews=all_reviews)
+
+
+@app.route('/add_review', methods=['POST', 'GET'])
+def add_review():
+    today_string=datetime.datetime.now().strftime('%d/%m/%y')
+    today_iso=datetime.datetime.now()
+    if 'username' in session:
+        if request.method == 'POST':
+            reviews = mongo.db.reviews
+            reviews.insert({
+                'username': session['username'], 
+                'your_review': request.form.get('your_review'),
+                'date_added': today_string,
+                'date_iso': today_iso})
+            flash('Your Review has been successfully added')
+            return redirect(url_for('all_reviews'))
+        return render_template("add_review.html", session_name = session['username'])
+    flash('You must be logged in to add a review')
+    return redirect(url_for('login'))
 
 
 @app.errorhandler(404)
@@ -198,3 +218,6 @@ if __name__ == "__main__":
     app.run(host=os.environ.get('IP'),
             port=(os.environ.get('PORT')),
             debug=True)
+
+
+

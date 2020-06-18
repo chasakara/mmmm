@@ -10,7 +10,7 @@
 <title>Traditional Herbs</title>
 </head>
 <header>
-<nav class="navbar nnnn navbar-expand-md ">
+<nav class="navbar navbar-expand-md navbarBg ">
   <a class="navbar-brand" href="{{ url_for('index')}}">LOGO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -29,27 +29,29 @@
       <li class="nav-item">
         <a class=" nav-link" href="{{url_for('add_herb')}}">Add Herb</a>
       </li>
-      <li class="nav-item">
-          {% if session['logged_in'] == True %}
+      {% if session['logged_in'] == True %}
+      <li class="nav-item">   
         <a class=" nav-link" title="Logout" href="{{url_for('logout')}}">Logout</a>
       </li>
           {% else %}
-         <li> 
+      <li> 
          <a class=" nav-link" href="{{url_for('all_herbs')}}" title="List your all herbs">All Herbs</a>
-         </li>
-         <li>
-        <a class=" nav-link" title="Login and Register" href="{{url_for('login')}}">Login</a>
-        </li>
+      </li>
+      <li>
+        <a class=" nav-link" title="Login" href="{{url_for('login')}}">Login</a>
+      </li>
+       <li>
+        <a class=" nav-link" title="Signup" href="{{url_for('signup')}}">Signup</a>
+      </li>
           {% endif %} 
-    
     </ul>
- <div>
+ <div class="username">
     {% block Head %}
     <!--Initialize ckeditor-->
     {{ ckeditor.load(pkg_type="basic") }}
     <!--Puts the Logged in users name in header-->
     {% if session['logged_in'] == True %}
-    <h6 class="loggedIn chf">Welcome:&nbsp;{{session_name}}</h6>
+    
     {% else %} {% endif %} {% endblock Head %}
   </div>
 </nav>
@@ -69,6 +71,21 @@
 
 	{% block content %} 
     {% endblock %}
+
+<footer class="social-links">
+      <div class="row no-gutters">
+        <div class="col-sm-12 col-md-12 social-links-center">
+          <ul>
+            <li><a href="https://www.facebook.com" target="_blank"> <i class="fab fa-facebook fa-2x"></i></a></li>
+            <li><a href="https://www.instagram.com" target="_blank"> <i class="fab fa-instagram fa-2x"></i></a></li>
+            <li><a href="https://www.twitter.com" target="_blank"> <i class="fab fa-twitter fa-2x"></i></a></li>
+            <li><a href="https://www.youtube.com" target="_blank"> <i class="fab fa-youtube fa-2x"></i></a></li>
+          </ul>
+          <br>
+           <p class="copyright">Copyright &copy; Traditional Herbs:2020</p> 
+       </div>
+      </div>
+ </footer>
 
 </body>
 </html>

@@ -12,9 +12,10 @@
       </div> 
     </div>
       <div class="">
-            <img src="{{herb.herb_image}}" class="img-fluid herb_image_container" id="herb_herb_image" alt="{{herb.herb_name}}">
+            <img src="{{herb.herb_image}}" class="img-fluid herb_image_container " id="herb_herb_image" alt="{{herb.herb_name}}">
       </div>     
         <div class="herbDescription">
+        <div>
         <div>
           <h5> Herb description </h5>
         </div>
@@ -22,6 +23,8 @@
             {{ herb.herb_description}}
           </div>
         </div>
+        </div>
+        <div class="herbPreparation1">
         <div class="herbPreparation">
         <div>
           <h5> Herb preparation </h5>
@@ -30,7 +33,9 @@
             {{ herb.herb_preparation}}
           </div>
         </div>
+        </div>
         <div class="herbUsage">
+        <div>
         <div>
          <h5> Herb usage </h5>
         </div>
@@ -38,26 +43,23 @@
             {{ herb.herb_usage}}
           </div>
         </div>
-         <div class="writenby">
-          <p class="">Writen by: <h6> {{herb.username}} </h6> </p>
         </div>
-        <div class="datewriten">
-          <p class="">Date writen: <h6> {{herb.date_added}} </h6> </p>
+         <div class="writenby">
+         <h6> Writen by:  {{herb.username}} </h6> 
+          <h6> Date writen: {{herb.date_added}} </h6>
         </div>
     <div class="container">
         <div class="row justify-content-center ">
             {% if session_name == herb.username %}
-            <a id="edit-btn" href="{{url_for('edit_herb', herb_id=herb._id)}}"
-                class="ripple-surface btn btn-primary chf col-md-4">Edit
-                Herb</a>
+            <a id="edit-btn" href="{{url_for('edit_herb', herb_id=herb._id)}}" class="btn-primary ">Edit Herb</a>
             <!--Sends you to a delete page for clicked herb-->
-            <a id="delete-btn" href="{{url_for('delete_herb', herb_id=herb._id)}}"
-                class="ripple-surface btn btn-primary chf col-md-4">Delete
-                Herb</a>
+            <a id="delete-btn" href="{{url_for('delete_herb', herb_id=herb._id)}}" class="  btn-primary ">Delete Herb</a>
+            <a href="{{url_for('all_reviews')}}" class="btn-sm ">Add review</a>
             <!--Sends you back to all_herbs-->
-            <a href="{{url_for('all_herbs')}}" class="ripple-surface btn btn-primary chf col-md-4">Back Home</a>
+            <a href="{{ url_for('all_herbs') }}" class="btn-sm ">Back Home</a>
             {% else %}
-            <a href="{{url_for('all_herbs')}}" class="ripple-surface btn btn-primary chf col-md-4">Back Home</a>
+            <a href="{{ url_for('all_herbs') }}" class="btn-sm ">Back Home</a>
+            <a href="{{ url_for('all_reviews' )}}" class="btn-sm ">Add review</a>
             {% endif %}
         </div>
 	</div>

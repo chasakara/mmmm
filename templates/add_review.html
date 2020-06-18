@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+   <div>
+     <form action="{{ url_for('add_review') }}" method="POST">
+      <div class="form-group">
+        <label for="your_review">Write your review if you have used the herb</label>
+        <textarea id="your_review" class="form-control" name="your_review" required>
+        </textarea>
+     </div>
+     <div>
+      <button type="submit">Add</button>
+     </div>
+    </form>
+   </div>
+</div>
+
+{% endblock %}

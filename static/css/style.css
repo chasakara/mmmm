@@ -1,23 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rajdhani|Ruda&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rajdhani&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap');
+
 * {margin: 0;
    padding: 0;}
 
 body {background-color: #d6f3c9cc;}
 
+.inputstyles {
+    border-left: 0 ;
+    border-right: 0;
+    border-top: 0;
+    box-shadow: none;
+    
+    background-color: none;
+}
+
 /*---- Navbar ---*/
 
-.nnnn {background-color: green;}
+.navbarBg {background-color: green;}
 
-.nav-item a  {
-    color: white;}
+ul { list-style-type: none;
+     margin: 0;
+     padding: 0;
+     overflow: hidden; }
+
+li { float: right;}
+
+li a { color: white;
+       text-align: center;
+       padding: 14px 16px;
+       text-decoration: none;}
+
+li a:hover { background-color: rgba(60, 109, 3, 0.719);
+             font-size: 105%;}
+
+.username { display: inline-block;
+            color: red;}             
 
 /*---- Home Page ---*/
 
-.home-image {margin-top: 97px;}
+.home-image {margin-top: 10px;}
 
-.home-image img {background-size: cover;
-             background-repeat: no-repeat;
-             width: 100vw;
-             height: 450px;}
+.home-image img { background-size: cover;
+                  background-repeat: no-repeat;
+                  width: 99vw;
+                  height: 450px;
+                  display: block;
+                  margin-left: auto;
+                  margin-right: auto; }
 
 /*---- My Herbs ---*/
 
@@ -59,12 +92,16 @@ span{color: green;}
              background-size: cover;
              }
 
+.reviewblock a {display: inline-block;
+padding: 10px;}
+
 /*---- Herb Page ---*/
 
 .herbGb {background-image: url("../herbsimages/herbbackground.jpg");       
          background-repeat: no-repeat;
          background-size: cover;
          margin-top: 5px;
+         margin-bottom: 5px;
          border-top: 1px solid black;}
 
 .herbBgcolor {background-color: white;}
@@ -72,29 +109,31 @@ span{color: green;}
 .herbnamecure_Bg {background-color: limegreen;}
 
 .herb_image_container {width: 80%;
-                       text-align: center;
-                       margin: 5px 0;
+                       margin: 5px auto;
                        height: 350px;}
+
 
 .herbDescription {border: 1px solid limegreen;
                   padding: 7px;
                   text-align: center;
                   background-color: lightgray;
-                  border-radius: 15px;}
+                  border-radius: 7px;}
 
 .herbPreparation { border: 1px solid limegreen;
                   padding: 7px;
                   text-align: center;
                   background-color: lightgray;
-                  border-radius: 15px;}
+                  border-radius: 7px;}
+
+.herbPreparation1 { margin: 5px 0; }
 
 .herbUsage { border: 1px solid limegreen;
              padding: 7px;
              text-align: center;
              background-color: lightgray;
-             border-radius: 15px;}
+             border-radius: 7px;}
 
-.writenby {text-align: center;}
+.writenby h6 {display: inline;}
 
 .datewriten {text-align: center;}
 
@@ -108,14 +147,36 @@ span{color: green;}
          margin-top: 5px;
          border-top: 1px solid black;}
 
+/*---- Edit Herb ---*/       
+
+.edit_herb_container_color { width: 80 vw;}
+
 /*---- Log in Form ---*/
 
 /*---- Sign up Form ---*/
 
-form{margin-right: auto;
-    text-align: left;
-    display: inline-block;
-    margin-left: auto;}
+.ccccccc { margin-right: auto;
+           margin-top: 10px;
+           margin-bottom: 10px;
+           background-color: white;
+           padding: 10px;
+           border-radius: 5px;
+           margin-left: auto;}
     
+
+.formAd { margin-top: 44px;}
+/*---- footer---*/
+
+.social-links { border-top: 1px solid limegreen;}
+
+.social-links-center {text-align: center;}
+
+.fa-facebook {color: blue;}
+
+.fa-instagram  {color:rgb(190, 94, 94); }
+
+.fa-twitter { color: rgb(45, 228, 241);}
+
+.fa-youtube {color: red;}
     
 
