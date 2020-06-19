@@ -5,7 +5,7 @@
 <div> Users reviews</div>
 <div class="container">
    {% for review in reviews %}
-
+       {{ review.your_review }}
    {% endfor %}
 </div>
 <a href="{{ url_for('add_review') }}"> Add review </a>

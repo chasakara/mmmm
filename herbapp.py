@@ -22,7 +22,7 @@ CKEditor(app)
 @app.route('/')
 @app.route("/index")
 def index():
-    herbs=mongo.db.herbs
+    herbs = mongo.db.herbs
     top_trending = ([herb for herb in herbs.aggregate
                         ([{"$sample": {"size": 4}}])])
     return render_template('index.html', top_trending=top_trending,
@@ -175,12 +175,10 @@ def logout():
     session['logged_in'] = False
     return redirect(url_for('all_herbs'))
 
-
 @app.route('/all_reviews')
 def all_reviews():
-    all_reviews = mongo.db.reviews.find()
     return render_template('all_reviews.html',
-                           all_reviews=all_reviews)
+                           reviews=mongo.db.reviews.find().sort("_id", -1))
 
 
 @app.route('/add_review', methods=['POST', 'GET'])

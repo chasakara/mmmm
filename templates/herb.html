@@ -54,12 +54,12 @@
             <a id="edit-btn" href="{{url_for('edit_herb', herb_id=herb._id)}}" class="btn-primary ">Edit Herb</a>
             <!--Sends you to a delete page for clicked herb-->
             <a id="delete-btn" href="{{url_for('delete_herb', herb_id=herb._id)}}" class="  btn-primary ">Delete Herb</a>
-            <a href="{{url_for('all_reviews')}}" class="btn-sm ">Add review</a>
+            <a href="{{url_for('review')}}" class="btn-sm ">Add review</a>
             <!--Sends you back to all_herbs-->
             <a href="{{ url_for('all_herbs') }}" class="btn-sm ">Back Home</a>
             {% else %}
             <a href="{{ url_for('all_herbs') }}" class="btn-sm ">Back Home</a>
-            <a href="{{ url_for('all_reviews' )}}" class="btn-sm ">Add review</a>
+            <a href="{{ url_for('review' )}}" class="btn-sm ">Add review</a>
             {% endif %}
         </div>
 	</div>
